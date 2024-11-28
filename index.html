@@ -16,25 +16,36 @@
       height: 100vh;
       font-family: 'Dancing Script', cursive;
       overflow: hidden;
+      background-color: #fef0f0;
     }
 
     .page1, .page2, .page4, .page5, .page6 {
       animation: fadeInBg 2s ease-in-out forwards;
       position: relative;
-      padding: 20px;
+      padding: 100px;
+      width: 100%;
+      box-sizing: border-box;
     }
 
     .page1 {
-      background-image: url('https://i.pinimg.com/originals/f1/bf/ca/f1bfcacdc3a777e5ab0ba5f57990a0e4.gif'); /* GIF URL */
-      background-size: contain;
-      background-position: top center;
+      background-image: url('https://i.pinimg.com/originals/f1/bf/ca/f1bfcacdc3a777e5ab0ba5f57990a0e4.gif');
+      background-size: cover;
+      background-position: down;
       background-repeat: no-repeat;
-      height: 60vh; /* Adjust the height of the page */
+      height: 60vh;
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
       align-items: center;
       padding-top: 20px;
+    }
+
+    .page4, .page5, .page6 {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
     }
 
     .page4 {
@@ -46,7 +57,7 @@
     }
 
     .page6 {
-      background: linear-gradient(45deg, #691c53, #782ece,#e3a9e8);
+      background: linear-gradient(45deg, #691c53, #782ece, #e3a9e8);
     }
 
     .gradient-text {
@@ -89,7 +100,8 @@
       color: #6a0572;
       cursor: pointer;
       transition: transform 0.3s, background 0.3s;
-      margin-top: 20px; /* Ensure space between gif and button */
+      margin-top: 20px;
+      min-width: 150px; /* Ensure minimum button size */
     }
 
     .button:hover {
@@ -123,21 +135,31 @@
     @media (max-width: 768px) {
       .button {
         padding: 0.8rem 1.5rem;
-        font-size: 1rem;
+        font-size: 1.1rem;
+        min-width: 120px;
+      }
+      .page1 {
+        height: 50vh; /* Reduce height for smaller screens */
       }
     }
 
     @media (max-width: 480px) {
       .button {
         padding: 0.6rem 1rem;
-        font-size: 0.9rem;
+        font-size: 1rem;
+        min-width: 100px;
+      }
+      .page1 {
+        height: 40vh; /* Further reduce height on very small screens */
+      }
+      .container h3, .container h5 {
+        font-size: 1rem;
       }
     }
   </style>
 </head>
 <body class="page1">
   <div class="container" id="content">
-    <!-- The GIF will be displayed above this button -->
     <button class="button" onclick="goToWishPage()">Next</button>
   </div>
 
@@ -176,7 +198,7 @@
         </div>
         <img src="https://i.pinimg.com/736x/ce/d9/2c/ced92c8daa7f77f3bf9aa32aba2643b9.jpg" 
              alt="A beautifully decorated Happy Birthday card with flowers and vibrant colors" 
-             style="width: 140%; border-radius: 40px; max-width: 800px;" />
+             style="width: 100%; max-width: 800px; border-radius: 40px;" />
         <button class="button" onclick="goToGiftPage()">For You</button>
       `;
     }
@@ -221,7 +243,7 @@
         <div class="container">
           <h1 class="gradient-text">apologize accepted!? </h1>
           <p class="gradient-text">
-                    <h1>forget what happend in the past please..... </h1>
+                    <h1>forget what happened in the past please..... </h1>
           </p>
         </div>
       `;
