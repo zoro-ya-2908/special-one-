@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happiest Birthday</title>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+  <style>
+    /* General Styling */
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: 'Dancing Script', cursive;
+      overflow: hidden;
+    }
+
+    .page1, .page2, .page4, .page5, .page6 {
+      animation: fadeInBg 2s ease-in-out forwards;
+      position: relative;
+      padding: 20px;
+    }
+
+    .page1 {
+      background-image: url('https://i.pinimg.com/originals/f1/bf/ca/f1bfcacdc3a777e5ab0ba5f57990a0e4.gif'); /* GIF URL */
+      background-size: contain;
+      background-position: top center;
+      background-repeat: no-repeat;
+      height: 60vh; /* Adjust the height of the page */
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      padding-top: 20px;
+    }
+
+    .page4 {
+      background: linear-gradient(45deg, #6714c7, #ca5c3e, #6a0572, #fad0c4);
+    }
+
+    .page5 {
+      background: linear-gradient(45deg, #6a0572, #4e1a40, #ffb6c1);
+    }
+
+    .page6 {
+      background: linear-gradient(45deg, #691c53, #782ece,#e3a9e8);
+    }
+
+    .gradient-text {
+      background: linear-gradient(to right, #e3a9e8, hsla(300, 77%, 36%, 0.867), #fcb69f);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    @keyframes fadeInBg {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    /* Content Fade-in Animation */
+    .container {
+      text-align: center;
+      opacity: 0;
+      transform: translateY(100px);
+      animation: fadeInText 2s ease-out forwards 1s;
+    }
+
+    @keyframes fadeInText {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Button Styling */
+    .button {
+      padding: 1rem 2rem;
+      font-size: 1.2rem;
+      border: none;
+      border-radius: 10px;
+      background: linear-gradient(45deg, #ff9a9e, #fad0c4);
+      color: #6a0572;
+      cursor: pointer;
+      transition: transform 0.3s, background 0.3s;
+      margin-top: 20px; /* Ensure space between gif and button */
+    }
+
+    .button:hover {
+      transform: scale(1.1);
+      background: linear-gradient(45deg, #e372f5, #ff9a9e);
+    }
+
+    /* Sparkling Cursor */
+    .sparkle {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      background: radial-gradient(circle, #fb77c0 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+      animation: sparkle-fade 1s ease-out forwards;
+    }
+
+    @keyframes sparkle-fade {
+      from {
+        transform: scale(1);
+        opacity: 1;
+      }
+      to {
+        transform: scale(0);
+        opacity: 0;
+      }
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+      .button {
+        padding: 0.8rem 1.5rem;
+        font-size: 1rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .button {
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body class="page1">
+  <div class="container" id="content">
+    <!-- The GIF will be displayed above this button -->
+    <button class="button" onclick="goToWishPage()">Next</button>
+  </div>
+
+  <script>
+    /* Cursor Effect */
+    document.addEventListener("mousemove", (e) => {
+      const sparkle = document.createElement("div");
+      sparkle.className = "sparkle";
+      sparkle.style.left = `${e.clientX}px`;
+      sparkle.style.top = `${e.clientY}px`;
+      document.body.appendChild(sparkle);
+      setTimeout(() => sparkle.remove(), 1000);
+    });
+
+    function goToWishPage() {
+      const today = new Date();
+      const formattedDate = today.toLocaleDateString();
+      document.body.className = 'page2';
+      document.getElementById('content').innerHTML = `
+        <div style="position: absolute; top: 0%; right: 10%; text-align: right; font-size: 2rem;">
+          <p>
+            <h3 class="gradient-text">Today is ${formattedDate}</h3>
+            <br>
+            <h5 class="gradient-text">
+              A day of joy, a year reborn,<br>
+              A heart aflame, a hopeful morn.<br>
+              May laughter dance and spirits soar,<br>
+              As blessings pour, forevermore.<br>
+              <br>
+              May every wish, a dream take flight,<br>
+              And every hope, a shining light.<br>
+              With love and warmth, this wish I send,<br>
+              May happiness forever transcend.
+            </h5>
+          </p>
+        </div>
+        <img src="https://i.pinimg.com/736x/ce/d9/2c/ced92c8daa7f77f3bf9aa32aba2643b9.jpg" 
+             alt="A beautifully decorated Happy Birthday card with flowers and vibrant colors" 
+             style="width: 140%; border-radius: 40px; max-width: 800px;" />
+        <button class="button" onclick="goToGiftPage()">For You</button>
+      `;
+    }
+
+    function goToGiftPage() {
+      document.body.className = 'page4';
+      document.getElementById('content').innerHTML = `
+        <div class="container">
+          <h1 class="gradient-text">Happiest Birthday Rumi!</h1>
+          <button class="button" onclick="showMessagePage()">Message</button>
+        </div>
+      `;
+    }
+
+    function showMessagePage() {
+      document.body.className = 'page5';
+      document.getElementById('content').innerHTML = `
+        <div class="container">
+          <h1 class="gradient-text">A request</h1>
+          <p class="gradient-text">
+          <h2 class="gradient-text">  I don't have enough time and,<br> i don't have enough budget that,<br> I couldn't give you any gift ...<br> please accept this..<br></h2>
+          </p>
+          <button class="button" onclick="showYesResponse()">Yes</button>
+          <button class="button" onclick="showNoResponse()">No</button>
+        </div>
+      `;
+    }
+
+    function showYesResponse() {
+      alert("Thank you! I’m so glad you loved it! ❤️");
+      goToFinalPage();
+    }
+
+    function showNoResponse() {
+      alert("Oh no! I’ll try even harder next time! 💔");
+      goToFinalPage();
+    }
+
+    function goToFinalPage() {
+      document.body.className = 'page6';
+      document.getElementById('content').innerHTML = `
+        <div class="container">
+          <h1 class="gradient-text">apologize accepted!? </h1>
+          <p class="gradient-text">
+                    <h1>forget what happend in the past please..... </h1>
+          </p>
+        </div>
+      `;
+    }
+  </script>
+</body>
+</html>
